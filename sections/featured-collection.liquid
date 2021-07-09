@@ -1,13 +1,23 @@
-<section class="container">
-    {% for product in collections[section.settings.featured_collection].products %}
-        <div class="card" style="width: 18rem;">
-            <img src="{{ product.featured_media.preview_image | img_url: 'medium' }}">
-            <div class="card-body">
-                <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
-                <p>{{ product.price | money }}</p>
+<section class="container py-4">
+    <h2 class="text-center my-3">{{ section.settings.title }}</h2>
+    <div class="row">
+        {% for product in collections[section.settings.featured_collection].products %}
+            {% assign image = product.featured_media.preview_image %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    {% if image != blank %}
+                        <img class="card-img-top" src="{{ image | img_url: 'medium' }}">
+                        {% else %}
+                            {{ 'product-1' | placeholder_svg_tag: 'card-img-top' }}
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="h6"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+                        <p>{{ product.price | money }}</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </section>
 
 {% schema %}
