@@ -1,0 +1,37 @@
+<section class="container">
+    {% for product in collections[section.settings.featured_collection].products %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ product.featured_media.preview_image | img_url: 'medium' }}">
+            <div class="card-body">
+                <h3><a href="{{ product.url }}">{{ product.title }}</a></h3>
+                <p>{{ product.price | money }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</section>
+
+{% schema %}
+{
+    "name": "Featured Collection",
+    "class": "featured-collection-section",
+    "settings": [
+        {
+            "type": "collection",
+            "id": "featured_collection",
+            "label": "Collection"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "default": "Featured Collection",
+            "label": "Title"
+        }
+    ],
+    "presets": [
+        {
+            "category": "Collection",
+            "name": "Featured Collection"
+        }
+    ]
+}
+{% endschema %}
