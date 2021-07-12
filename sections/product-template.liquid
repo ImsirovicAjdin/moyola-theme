@@ -35,10 +35,25 @@
         <button class="btn btn-primary btn-lg w-100 rounded-0" type="submit name="add" id="AddToCart">
           Add to cart
         </button>
-
-        {{ form | payment_button }}
+        {% if section.settings.dynamic_buttons_checkbox == true %}
+            {{ form | payment_button }}
+        {% endif %}
       {% endform %}
 
     </div>
   </div>
 </div>
+
+{% schema %}
+{
+    "name": "Product pages",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "dynamic_buttons_checkbox",
+            "label": "Enable Dynamic Buttons",
+            "default": false
+        }
+    ]
+}
+{% endschema %}
