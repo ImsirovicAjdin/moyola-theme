@@ -1,6 +1,7 @@
 <section class="inner-hero-section">
+    <!-- shopify.com/partners/blog/img-url-filter -->
     {% if section.settings.image != blank %}
-        <img src="{{ section.settings.image | img_url }}" alt="">
+        <img src="{{ section.settings.image | img_url: '1920x500', crop: 'center' }}" alt="">
     {% else %}
         {% capture current %}{% cycle 1,2 %}{% endcapture %}
         {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
