@@ -15,3 +15,9 @@ html, body {}
   width: 100%;
   z-index: -1;
 }
+
+.login-form {
+  width: 100%;
+  max-width: 300px;
+  margin: auto;
+}
