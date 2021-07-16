@@ -9,6 +9,12 @@
     },
     "Blog": {
       "title": "Blog"
+    },
+    "Layout": {
+      "account_text": "Account",
+      "login_text": "Login",
+      "logout_text": "Logout",
+      "register_text": "Register"
     }
   }
 }

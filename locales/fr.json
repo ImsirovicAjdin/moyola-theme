@@ -9,6 +9,9 @@
     },
     "Blog": {
       "title": "Bloge"
+    },
+    "Layout": {
+      "login_text": "Login"
     }
   }
 }
