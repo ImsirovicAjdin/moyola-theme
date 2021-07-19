@@ -16,7 +16,7 @@ html, body {}
   z-index: -1;
 }
 
-.login-form {
+.login-form, .forgot-password-form {
   width: 100%;
   max-width: 300px;
   margin: auto;
