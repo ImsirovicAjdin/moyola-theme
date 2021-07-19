@@ -1,0 +1,17 @@
+{
+  "general": {
+    "404": {
+      "title": "Nije nadjeno",
+      "subtext_html": "Stranica koju trazite ne postoji"
+    },
+    "Cart": {
+      "title": "Korpa"
+    },
+    "Blog": {
+      "title": "Blog"
+    },
+    "Layout": {
+      "login_text": "Login"
+    }
+  }
+}
