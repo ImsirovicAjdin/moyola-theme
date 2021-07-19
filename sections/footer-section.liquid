@@ -26,6 +26,13 @@
             {% endfor %}
         </div>
     </div>
+    {% if section.settings.enable_payment_type_icons %}
+        <div class="container d-flex justify-content-center">
+            {% for payment_type in shop.enabled_payment_types %}
+                <img src="{{ payment_type | payment_type_img_url }}" alt="">
+            {% endfor %}
+        </div>
+    {% endif %}
 </footer>
 
 {{ 'bootstrap.min.js' | asset_url | script_tag }}
@@ -42,6 +49,12 @@
             "min": 2,
             "max": 4,
             "label": "Number of columns"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_payment_type_icons",
+            "label": "Enable Payment Type Icons",
+            "default": true
         }
     ],
     "max_blocks": 4,
