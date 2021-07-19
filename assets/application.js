@@ -52,7 +52,12 @@ if (localeItems.length > 0) {
 }
 
 let productInfoAnchors = document.querySelectorAll('#productInfoAnchor');
-let productModal = new bootstrap.Modal(document.getElementById('productInfoModal', {}));
+
+let productModal;
+
+if(document.getElementById('productInfoModal')) {
+    productModal = new bootstrap.Modal(document.getElementById('productInfoModal', {}));
+}
 if(productInfoAnchors.length > 0) {
     productInfoAnchors.forEach(item => {
         item.addEventListener('click', event => {
@@ -84,28 +89,29 @@ if(productInfoAnchors.length > 0) {
 };
 
 let modalAddToCartForm = document.querySelector('#addToCartForm');
-modalAddToCartForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    let formData = {
-        'items': [
-            {
-                'id': document.getElementById('modalItemID').value,
-                'quantity': document.getElementById('modalItemQuantity').value,
 
-            }
-        ]
-    };
+if( modalAddToCartForm != null ) {
+    modalAddToCartForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let formData = {
+            'items': [
+                {
+                    'id': document.getElementById('modalItemID').value,
+                    'quantity': document.getElementById('modalItemQuantity').value,
+                }
+            ]
+        };
 
-    fetch('/cart/add.js', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-    })
-    .then( resp => resp.json())
-    .catch(err => {
-        console.error('Error: ' + err);
-    })
-
-})
+        fetch('/cart/add.js', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then( resp => resp.json())
+        .catch(err => {
+            console.error('Error: ' + err);
+        });
+    });
+};
