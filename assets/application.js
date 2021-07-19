@@ -68,7 +68,14 @@ if(productInfoAnchors.length > 0) {
                 document.getElementById('productInfoPrice').innerHTML = item.getAttribute('product-price');
                 document.getElementById('productInfoDescription').innerHTML = data.description;
 
-                document.getElementById('modalItemID').value = data.variants[0].id;
+                let variants = data.variants;
+                let variantSelect = document.getElementById('modalItemID');
+
+                variants.forEach(function(variant, index) {
+                    console.log(variant);
+
+                    variantSelect.options[variantSelect.options.length] = new Option(variant.option1, variant.id);
+                })
 
                 productModal.show();
             });
