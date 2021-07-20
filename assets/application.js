@@ -133,3 +133,46 @@ function update_cart() {
     .then( data => document.getElementById('numberOfCartItems').innerHTML = data.items.length)
     .catch( err => console.error(err));
 }
+
+let predictiveSearchInput = document.getElementById('searchInputField');
+let timer;
+
+let offcanvasSearch = document.getElementById('offcanvasSearchResult');
+let bsOffcanvas = new bootstrap.Offcanvas(offcanvasSearch);
+
+if(predictiveSearchInput != null) {
+    predictiveSearchInput.addEventListener('input', function(e) {
+
+        clearTimeout(timer);
+
+        if(predictiveSearchInput.value) {
+            timer = setTimeout(fetchPredictiveSearch, 700);
+        }
+
+    })
+}
+
+function fetchPredictiveSearch() {
+    fetch(`/search/suggest.json?q=${predictiveSearchInput.value}&resources[type]=product,article,page`)
+    .then(resp => resp.json())
+    .then(data => {
+        console.log(data);
+
+        let products = data.resources.results.products;
+
+        document.getElementById('search_results_body').innerHTML = '';
+
+        products.forEach(function(product,index) {
+            document.getElementById('search_results_body').innerHTML += `
+                <div class="card" style="width: 18rem;">
+                    <img src="${product.image} class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">${product.title}</h5>
+                        <p class="card-text">$${product.price}</p>
+                    </div>
+                </div>
+            `;
+        })
+        bsOffcanvas.show();
+    });
+};
