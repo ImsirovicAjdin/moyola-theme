@@ -21,7 +21,7 @@
   <h1 class="lead">Activate Account</h1>
   <div class="row">
     {% form 'activate_customer_password' %}
-      {% include 'form-error', form: form %}
+      {% render 'form-error', form: form %}
 
       <div class="col-12">
         <label for="activate_password1" class="form-label">Password</label>
