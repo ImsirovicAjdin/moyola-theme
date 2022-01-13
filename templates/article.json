@@ -1,8 +1,14 @@
 {
     "sections": {
         "template": {
-            "type": "template-article"
-        }
+            "type": "template-article",
+            "blocks": {
+                "image_block": {
+                    "type": "featured_image"
+                }
+            }
+        },
+        "block_order": ["image_block"]
     },
     "order": ["template"]
 }
