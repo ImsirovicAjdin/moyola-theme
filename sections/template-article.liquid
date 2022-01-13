@@ -12,18 +12,28 @@
   <div class="row">
     <div class="col-12 col-md-8">
 
-      {% if article.image != blank %}
-        <img src="{{article.image | img_url: 'master' }}" class="img-fluid rounded w-100 my-2">
-      {% endif %}
+      {% for block in section.blocks %}
+        {% case block.type %}
+            {% when 'featured_image' %}
+                {% if article.image != blank %}
+                    <img src="{{article.image | img_url: 'master' }}" class="img-fluid rounded w-100 my-2">
+                {% endif %}
+            {% when 'title' %}
+                <div class="article-title my-2">
+                    <h1 class="display-4">{{ article.title }}</h1>
+                </div>
+            {% when 'article_meta' %}
+                <div class="article-meta my-2">
+                    <p class="lead">By {{ author }} published on {{ date }}</p>
+                </div>
+            {% when 'content' %}
+                <div class="my-2">{{ article.content }}</div>
+            {% else %}
 
-      <div class="article-title my-2">
-        <h1 class="display-4">{{ article.title }}</h1>
-      </div>
-      <div class="article-meta my-2">
-        <p class="lead">By {{ author }} published on {{ date }}</p>
-      </div>
+        {% endcase %}
 
-      <div class="my-2">{{ article.content }}</div>
+      {% endfor %}
+
       <div class="comment-section">
         {% if blog.comments_enabled? %}
           <h4>
