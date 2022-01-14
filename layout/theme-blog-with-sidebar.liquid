@@ -19,6 +19,7 @@
   <main class="container my-5" role="main">
     <div class="row">
         {{ content_for_layout }}
+        {% section 'sidebar' %}
     </div>
   </main>
   {% section 'footer-section' %}
