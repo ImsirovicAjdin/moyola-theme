@@ -8,10 +8,6 @@
 
 <article itemscope itemtype="https://schema.org/BlogPosting">
 
-<div class="container my-5">
-  <div class="row">
-    <div class="col-12 col-md-8">
-
       {% for block in section.blocks %}
         {% case block.type %}
             {% when 'featured_image' %}
@@ -94,15 +90,6 @@
           </div>
         {% endif %}
       </div>
-    </div>
-    {% comment %}
-      THIS COLUMN IS FOR SIDEBAR
-    {% endcomment %}
-    <div class="col-12 col-md-4">
-      {% section 'sidebar' %}
-    </div>
-  </div>
-</div>
 
 </article>
 
@@ -110,6 +97,7 @@
 {
     "name": "Article Section",
     "tag": "section",
+    "class": "col-md-8 col-12",
     "blocks": [
         {
             "type": "featured_image",
