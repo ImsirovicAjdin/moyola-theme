@@ -5,8 +5,9 @@
     </div>
   </div>
 
+{% paginate blog.articles by 5 %}
+
   <div class="container my-5 p-2">
-    {% paginate blog.articles by 5 %}
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 py-5">
         {% for article in blog.articles %}
           <div class="col">
@@ -32,7 +33,34 @@
         {% endfor %}
       </div>
 
-      {% render 'pagination', paginate: paginate %}
+    </div>
 
-    {% endpaginate %}
-  </div>
+    <div class="container my-2">
+        {% render 'pagination', paginate: paginate %}
+    </div>
+
+{% endpaginate %}
+
+{% schema %}
+{
+    "name": "Blog Section",
+    "tag": "section",
+    "blocks": [
+        {
+            "type": "blog_title",
+            "name": "Blog Title",
+            "limit": 1
+        },
+        {
+            "type": "blog_grid",
+            "name": "Blog Grid",
+            "limit": 1
+        },
+        {
+            "type": "blog_pagination",
+            "name": "Blog Pagination",
+            "limit": 1
+        }
+    ]
+}
+{% endschema %}
